@@ -9,6 +9,84 @@
     <link rel="stylesheet" href="Style.css">
     <title>Pranav Sankar | Portfolio</title>
     <style>
+        /* Existing styles */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            text-decoration: none;
+            border: none;
+            outline: none;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        html {
+            font-size: 62.5%; /* 1rem = 10px */
+        }
+
+        body {
+            width: 100%;
+            height: 100vh;
+            overflow-x: hidden;
+            background-color: rgb(0, 0, 0);
+            color: white;
+        }
+
+        header {
+            margin-top: 20px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1.5rem 9%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 3rem;
+            color: #22e6e9;
+            font-weight: 800;
+            cursor: pointer;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            font-size: 1.8rem;
+            color: white;
+            margin-left: 3rem;
+            font-weight: 500;
+            transition: color 0.3s ease, border-bottom 0.3s ease;
+        }
+
+        nav a:hover,
+        nav a.active {
+            color: #22e6e9;
+            border-bottom: 3px solid #22e6e9;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .hamburger div {
+            width: 25px;
+            height: 3px;
+            background-color: white;
+            margin: 4px 0;
+        }
+
         .dropdown {
             position: relative;
             display: inline-block;
@@ -17,7 +95,7 @@
         .dropdown-content {
             display: none;
             position: absolute;
-            background-color: #595959; /* Light gray background */
+            background-color: #f0f0f0;
             min-width: 200px;
             box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
             z-index: 1;
@@ -30,18 +108,90 @@
         .dropdown-content a {
             color: #333;
             padding: 12px 16px;
-            text-decoration: none;
             display: block;
             transition: background-color 0.3s, color 0.3s;
         }
 
         .dropdown-content a:hover {
-            background-color: #007bff; /* Change background on hover */
-            color: white; /* Change text color on hover */
+            background-color: #007bff;
+            color: white;
         }
 
         .dropdown:hover .dropdown-content {
             display: block;
+        }
+
+        /* Mobile styles */
+        @media (max-width: 768px) {
+            nav {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background-color: rgba(0, 0, 0, 0.9);
+                position: absolute;
+                top: 60px;
+                left: 0;
+                z-index: 200;
+            }
+
+            nav.active {
+                display: flex;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+        }
+
+        /* Additional styles */
+        section {
+            min-height: 100vh;
+            padding: 5rem 9% 5rem;
+        }
+
+        .home {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10rem 9%;
+        }
+
+        .home-content h1 {
+            font-size: 5rem;
+            font-weight: 700;
+        }
+
+        .home-content h3 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .home-img img {
+            width: 30vw;
+            max-width: 600px;
+            border-radius: 50%;
+            box-shadow: 0 0 25px solid #22e6e9;
+        }
+
+        @media (max-width: 1000px) {
+            .home {
+                flex-direction: column;
+                align-items: center;
+                gap: 4rem;
+            }
+
+            .home-content h1 {
+                font-size: 4rem;
+            }
+
+            .home-content h3 {
+                font-size: 2.5rem;
+            }
+
+            .home-img img {
+                width: 80vw;
+                max-width: none;
+            }
         }
     </style>
 </head>
@@ -49,8 +199,12 @@
 <body>
     <header>
         <a href="#" class="logo">Pranav</a>
-
-        <nav>
+        <div class="hamburger" onclick="toggleNav()">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <nav id="navbar">
             <a href="#" class="active">Home</a>
             <a href="#">Portfolio</a>
             <a href="#">Services</a>
@@ -65,12 +219,9 @@
         </nav>
     </header>
     <section class="home">
-        <div class="home-img">
-            <img src="https://i.ibb.co/g6x4QX8/main.jpg" alt="A professional photo of Pranav">
-        </div>
         <div class="home-content">
             <h1>Hi, It's <span>Pranav</span></h1>
-            <h3 class="typing-text">I'm a <span></span></h3>
+            <h3 class="typing-text"><span></span></h3>
             <p>If you have any inquiries, suggestions for improvement, or if you've encountered any issues with my assets, I encourage you to get in touch. Your feedback is invaluable in helping me refine and enhance my work. You can easily reach out via.</p>
             <div class="social-icons">
                 <a href="https://www.linkedin.com/in/pranav-sankar-640a2b231/" target="_blank" aria-label="LinkedIn Profile"><i class="fa-brands fa-linkedin"></i></a>
@@ -79,10 +230,9 @@
                 <a href="https://www.instagram.com/polymiragee/" target="_blank" aria-label="Instagram Profile"><i class="fa-brands fa-instagram"></i></a>
                 <a href="https://discord.com/users/1142939834881687643" target="_blank" aria-label="Discord Profile"><i class="fa-brands fa-discord"></i></a>
             </div>
-            
-            <!--<a href="https://www.fiverr.com/pranavsan" class="btn">Fiverr</a> -->
-
-            
+        </div>
+        <div class="home-img">
+            <img src="https://i.ibb.co/g6x4QX8/main.jpg" alt="A professional photo of Pranav">
         </div>
     </section>
 
@@ -102,6 +252,11 @@
 
             type();
         });
+
+        function toggleNav() {
+            const navbar = document.getElementById('navbar');
+            navbar.classList.toggle('active');
+        }
     </script>
 </body>
 
